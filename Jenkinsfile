@@ -2,38 +2,38 @@ pipeline{
 	agent any
 	
 	tools{
-		gradle'Gradle'
-		jdk'JDK11'
+		gradle 'Gradle'
+		jdk 'JDK11'
 	}
-	
 	stages{
-		
 		stage('Checkout'){
 			steps{
-				git branch:'master', url:'https://github.com/Sindhu-237/MyGradleApp.git'
+				git branch:'master',url:'https://github.com/dhruthi-am/MyGradleApp.git'
 			}
 		}
-		
 		stage('Build'){
+			steps{
+				sh'gradle build'
+			}
+		}
+		stage('Test'){
 			steps{
 				sh'gradle test'
 			}
 		}
-		
 		stage('Run Application'){
 			steps{
 				sh'gradle run'
 			}
 		}
-		
 	}
-	
 	post{
-	success{
-		echo'Build Successfully'
+		success{
+			echo'Build success'
 		}
-	failure{
-		echo'Build failure'
+		failure{
+			echo'Build failure'
+		}
 	}
 }
-}	
+		
