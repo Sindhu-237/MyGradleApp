@@ -3,7 +3,7 @@ pipeline{
 	
 	tools{
 		gradle'Gradle'
-		jdk'jdk'
+		jdk'JDK11'
 	}
 	
 	stages{
