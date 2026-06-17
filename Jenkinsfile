@@ -3,7 +3,7 @@ pipeline{
 	
 	tools{
 		gradle 'Gradle'
-		jdk 'JDK11'
+
 	}
 	stages{
 		stage('Checkout'){
@@ -16,14 +16,16 @@ pipeline{
 				sh'gradle build'
 			}
 		}
-		stage('Test'){
-			steps{
-				sh'gradle test'
-			}
-		}
-		stage('Run Application'){
+	
+		stage('Run'){
 			steps{
 				sh'gradle run'
+			}
+		}
+		
+		stage('Custom Task'){
+			steps{
+				sh'gradle display'
 			}
 		}
 	}
