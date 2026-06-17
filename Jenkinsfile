@@ -1,0 +1,39 @@
+pipeline{
+	agent any
+	
+	tools{
+		gradle'Gradle'
+		jdk'jdk'
+	}
+	
+	stages{
+		
+		stage('Checkout'){
+			steps{
+				git branch:'master', url:'https://github.com/Sindhu-237/MyGradleApp.git'
+			}
+		}
+		
+		stage('Build'){
+			steps{
+				sh'gradle test'
+			}
+		}
+		
+		stage('Run Application'){
+			steps{
+				sh'gradle run'
+			}
+		}
+		
+	}
+	
+	post{
+	success{
+		echo'Build Successfully'
+		}
+	failure{
+		echo'Build failure'
+	}
+}
+}	
